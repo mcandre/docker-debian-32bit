@@ -1,10 +1,10 @@
-IMAGE=mcandre/docker-debian-32bit:3.1
+IMAGE=mcandre/docker-debian-32bit:3.0
 ROOTFS=rootfs.tar.gz
 define GENERATE
 apt-get update && \
 apt-get install -y debootstrap && \
 mkdir /chroot && \
-debootstrap --arch i386 sarge /chroot http://archive.debian.org/debian && \
+debootstrap --arch i386 woody /chroot http://archive.debian.org/debian && \
 cd /chroot && \
 tar czvf /mnt/rootfs.tar.gz .
 endef
