@@ -12,16 +12,16 @@ https://registry.hub.docker.com/u/mcandre/docker-debian-32bit/
 
 ```
 $ make
-docker run --rm --privileged -v $(pwd):/mnt -t debian:sid sh -c 'apt-get update && apt-get install -y debootstrap && mkdir /chroot && debootstrap --arch i386 sid /chroot && cd /chroot && tar czvf /mnt/rootfs.tar.gz .'
+docker run --rm --privileged -v $(pwd):/mnt -t debian:sid sh -c 'apt-get update && apt-get install -y debootstrap && mkdir /chroot && debootstrap --arch i386 stretch /chroot && cd /chroot && tar czvf /mnt/rootfs.tar.gz .'
 ...
 
-docker build -t mcandre/docker-debian:latest .
+docker build -t mcandre/docker-debian-32bit:9 .
 Step 0 : FROM scratch
 Step 1 : MAINTAINER Andrew Pennebaker <andrew.pennebaker@gmail.com>
 Step 2 : ADD rootfs.tar.gz /
 Successfully built 5ac6b04a4424
 
-docker run --rm mcandre/docker-debian:latest sh -c 'cat /etc/*release*'
+docker run --rm mcandre/docker-debian-32bit:9 sh -c 'cat /etc/*release*'
 PRETTY_NAME="Debian GNU/Linux stretch/sid"
 NAME="Debian GNU/Linux"
 ID=debian
