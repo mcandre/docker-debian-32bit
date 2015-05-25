@@ -1,4 +1,4 @@
-IMAGE=mcandre/docker-debian:latest
+IMAGE=mcandre/docker-debian-32bit:sid
 ROOTFS=rootfs.tar.gz
 define GENERATE
 apt-get update && \
