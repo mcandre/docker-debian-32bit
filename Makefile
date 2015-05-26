@@ -1,10 +1,11 @@
-IMAGE=mcandre/docker-debian-32bit:2.2
+IMAGE=mcandre/docker-debian-32bit:2.1
 ROOTFS=rootfs.tar.gz
 define GENERATE
+export DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get install -y debootstrap && \
 mkdir /chroot && \
-debootstrap --arch i386 potato /chroot http://archive.debian.org/debian && \
+debootstrap --arch i386 slink /chroot http://archive.debian.org/debian && \
 cd /chroot && \
 tar czvf /mnt/rootfs.tar.gz .
 endef
@@ -12,7 +13,7 @@ endef
 all: run
 
 $(ROOTFS):
-	docker run --rm --privileged -v $$(pwd):/mnt -t mcandre/docker-debian:lenny sh -c '$(GENERATE)'
+	docker run --rm --privileged -v $$(pwd):/mnt -t mcandre/docker-debian:woody sh -c '$(GENERATE)'
 
 build: Dockerfile $(ROOTFS)
 	docker build -t $(IMAGE) .
