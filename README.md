@@ -2,7 +2,11 @@
 
 # ABOUT
 
-docker-debian-32bit is a collection of [debootstrap](https://wiki.debian.org/Debootstrap)-generated 32-bit Debian base images.
+docker-debian-32bit is a collection of [debootstrap](https://wiki.debian.org/Debootstrap)-generated Debian base images.
+
+## 2.0-
+
+mcandre/docker-debian-32bit:2.0 and below offer [qemu](https://registry.hub.docker.com/u/tianon/qemu/) emulation for ancient Debian versions.
 
 # DOCKER HUB
 
@@ -12,17 +16,9 @@ https://registry.hub.docker.com/u/mcandre/docker-debian-32bit/
 
 ```
 $ make
-docker run --rm --privileged -v $(pwd):/mnt -t mcandre/docker-debian:woody sh -c 'apt-get update && apt-get install -y debootstrap && mkdir /chroot && debootstrap --arch i386 slink /chroot http://archive.debian.org/debian && cd /chroot && tar czvf /mnt/rootfs.tar.gz .'
 ...
-
-docker build -t mcandre/docker-debian-32bit:2.1 .
-Step 0 : FROM scratch
-Step 1 : MAINTAINER Andrew Pennebaker <andrew.pennebaker@gmail.com>
-Step 2 : ADD rootfs.tar.gz /
-Successfully built 5ac6b04a4424
-
-docker run --rm mcandre/docker-debian-32bit:2.1 sh -c 'cat /etc/*version*'
-2.1
+Serving VNC at localhost:5900 ...
+Welcome to Debian GNU/Linux 2.0!
 ```
 
 # REQUIREMENTS
@@ -31,18 +27,19 @@ docker run --rm mcandre/docker-debian-32bit:2.1 sh -c 'cat /etc/*version*'
 
 ## Optional
 
+* a VNC viewer
 * [make](http://www.gnu.org/software/make/)
 
 ## Debian/Ubuntu
 
 ```
-$ sudo apt-get install docker.io build-essential
+$ sudo apt-get install docker.io vino build-essential
 ```
 
 ## RedHat/Fedora/CentOS
 
 ```
-$ sudo yum install docker-io
+$ sudo yum install docker-io vino
 ```
 
 ## non-Linux
@@ -56,16 +53,18 @@ $ sudo yum install docker-io
 * [Xcode](http://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12)
 * [Homebrew](http://brew.sh/)
 * [brew-cask](http://caskroom.io/)
+* [TigerVNC](http://tigervnc.org/)
 
 ```
-$ brew cask install virtualbox vagrant
+$ brew cask install virtualbox vagrant tigervnc
 $ brew install boot2docker
 ```
 
 ### Windows
 
 * [Chocolatey](https://chocolatey.org/)
+* [TightVNC](http://www.tightvnc.com/)
 
 ```
-> chocolatey install docker make
+> chocolatey install docker tightvnc make
 ```
