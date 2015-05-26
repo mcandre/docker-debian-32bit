@@ -18,7 +18,7 @@ https://registry.hub.docker.com/u/mcandre/docker-debian-32bit/
 $ make
 ...
 Serving VNC at localhost:5900 ...
-Welcome to Debian GNU/Linux 2.0!
+Welcome to Debian GNU/Linux 1.3!
 ```
 
 # REQUIREMENTS

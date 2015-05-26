@@ -1,9 +1,9 @@
-ISO=debian-2.0r0-i386-binary-1.iso
+ISO=debian-bo/iso/Debian-1.3.1-bo-binary.iso
 
 all: run
 
 $(ISO):
-	wget http://mirror.debianforum.de/debian-iso-archive/hamm/i386/debian-2.0r0-i386-binary-1.iso
+	sh -c 'cd debian-bo/ && jigdo-file make-image --jigdo=iso/Debian-1.3.1-bo-binary.iso.jigdo *'
 
 run: clean-containers $(ISO)
 	echo "Serving VNC at $$(boot2docker ip):5900 ..."
